@@ -1,0 +1,11 @@
+@import url("../src/Pages/Styles/Common/common.css");
+@import url("../src/Pages/Styles/Common/dash.css");
+/* .content {
+    flex: 1;
+  
+    padding: 20px 0 0 20px;
+} */
+.app{
+    display: flex;
+    
+}

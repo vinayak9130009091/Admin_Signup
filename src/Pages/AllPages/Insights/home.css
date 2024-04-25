@@ -1,0 +1,21 @@
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+    grid-template-areas: "c1 c2 c3" "c4 c4 c5" "c4 c4 c6";
+    height: 83vh;
+    /* border: 1px solid red; */
+}
+@media (max-width:768px) {
+    .home-container{
+    overflow-y: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(6, 200px);
+      grid-template-areas: initial;
+    }
+  
+    .card {
+      grid-area: initial !important;
+    }
+  }

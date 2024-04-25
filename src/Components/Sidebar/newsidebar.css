@@ -1,0 +1,81 @@
+@import url('../../Pages/Styles/Common/dash.css');
+
+
+
+.header_title {
+  display: flex;
+  flex: 1;
+  margin-bottom: 30px;
+  align-items: center;
+  margin-left: 20px;
+}
+.header_title button {
+  display: inline-block;
+  margin-inline-end: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 600;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: color 0.2s;
+  text-rendering: auto;
+}
+.new-title {
+  flex: 1;
+  margin-top: 20px;
+  /* color: black; */
+  color: var(--new-sidebar-color);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.plus {
+  margin-right: 10px;
+}
+.content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+.new-icon {
+  margin-inline-end: 4px;
+  color: #000;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.content-list {
+  margin-top: 10px;
+}
+.content li {
+  list-style: none;
+  margin-top: 10px;
+}
+.content li a {
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 15px;
+  color: #000;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.content .new-icon {
+  min-width: 60px;
+  border-radius: 6px;
+}
+hr {
+  margin-top: 10px;
+}

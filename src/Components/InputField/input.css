@@ -1,0 +1,11 @@
+.inputbox-container {
+    display: 'flex';
+    justify-Content: 'left';
+
+}
+
+.inputfield-container {
+    display: 'flex';
+    flex-Direction: 'column';
+    flex-Wrap: 'wrap';
+}

@@ -1,0 +1,43 @@
+:root {
+    /* --width:9% ; */
+    --borderradious: 10px;
+    --background: rgb(58, 145, 245);
+    --color: #fff;
+    --hover: blue;
+}
+
+
+.btn1 {
+    font-weight: 550;
+    border-radius: var(--borderradious);
+    background-color: var(--background);
+    color: var(--color);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+
+}
+
+.btn1:hover {
+    background-color: var(--hover);
+}
+
+:root {
+
+    --b2borderradious: 10px;
+    --b2background: #fff ;
+    --b2color:rgb(58, 145, 245);
+
+}
+
+
+.btn2 {
+    background-color: var(--b2background);
+    border-radius: var(--b2borderradious);
+    font-weight: 550;
+    color: var(--b2color);
+    border: 1px solid rgb(58, 145, 245);
+    padding: 8px 12px;
+    cursor: pointer;
+
+}

@@ -1,0 +1,40 @@
+.login-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    border-radius: 20px;
+  }
+  
+  .right-container .font-class  {
+    font-size: 20px;
+  }
+  
+  
+  
+  @media only screen and (max-width: 600px) {
+    .login-container {
+      flex-direction: column;
+    }
+  
+    .left-container {
+      display: none;
+    }
+   
+    .left-container .font-class  {
+      font-size: 20px;
+    }
+  
+    .right-container {
+      width: 100%;
+    }
+
+    .login-right{
+        margin:'10%'
+    }
+
+    .playstore-section {
+      flex-direction: column;
+    }
+
+   
+  }

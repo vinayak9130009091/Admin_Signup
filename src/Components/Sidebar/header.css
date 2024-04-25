@@ -1,0 +1,92 @@
+@import url('../../Pages/Styles/Common/dash.css');
+.new-btn{
+    padding: 8px 25px;
+    background-color: #63e657;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 10px;
+}
+.header-btns{
+    display: flex;
+    gap: 20px;
+   
+}
+.add-icon{
+  font-size: 25px;
+ color: #267a1f;
+  cursor: pointer;
+}
+.search-icon{
+    font-size: 25px;
+    color: var(--search-icons-color);
+    cursor: pointer;
+    /* color:#63e657 */
+    
+}
+.new-sidebar, .new-search {
+    background-color: #FAF9F6; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 300px; 
+    height: 100vh; 
+    z-index: 1000; 
+    
+  }
+  .new-sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .new-sidebar-header,.new-search-content{
+    margin: 0; 
+    color: #000; 
+  }
+  .dark-theme .new-sidebar,.dark-theme .new-search{
+    background-color: #333;
+    
+  }
+  .dark-theme .new-sidebar-header, .dark-theme .new-search-content{
+    color: #000;
+  }
+  
+
+  .new-sidebar-container {
+    position: absolute;
+    top: 0;
+    left: -500px; 
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    transition: right 0.3s ease-in-out;
+    z-index: 100;
+  }
+  .new-search-container {
+    position: absolute;
+    top: 0;
+    left: -500px; 
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    transition: right 0.3s ease-in-out;
+    z-index: 100;
+  }
+  
+  .new-sidebar{
+    left: 0;
+  }
+  .new-search {
+    left: 0;
+  }
+  
+  
+  

@@ -1,0 +1,25 @@
+.button-container {
+    display: flex;
+    justify-content: left;    
+}
+
+.button-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; 
+}
+
+.button-btn > button {
+    height: 5vh;
+    width: 50%;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: rgb(100, 149, 237);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.button-btn > button:hover {
+    background: rgb(7, 65, 173);
+}
