@@ -82,16 +82,7 @@ const AccountsData = () => {
   };
 
   // Filtering contacts based on search text
-  const filteredContacts = contacts.filter(
-    (contact) =>
-      (contact.Name && contact.Name.toLowerCase().includes(filter.toLowerCase())) ||
-      (contact.Email && contact.Email.toLowerCase().includes(filter.toLowerCase())) ||
-      (contact.phoneNumber && contact.phoneNumber.some((number) => number.value && number.value.toLowerCase().includes(filter.toLowerCase())))(
-        // (contact.phoneNumber && contact.phoneNumber.some(number => number.phoneNumber && number.phoneNumber.toLowerCase().includes(filter.toLowerCase()))) ||
-        contact.companyName && contact.companyName.toLowerCase().includes(filter.toLowerCase())
-      ) ||
-      (contact.Tags && contact.Tags.some((tagArray) => tagArray.some((tag) => tag.tagName && tag.tagName.toLowerCase().includes(filter.toLowerCase()))))
-  );
+  const filteredContacts = contacts.filter((contact) => (contact.Name && contact.Name.toLowerCase().includes(filter.toLowerCase())) || (contact.Email && contact.Email.toLowerCase().includes(filter.toLowerCase())) || (contact.phoneNumber instanceof Array && contact.phoneNumber.some((number) => number && number.toLowerCase().includes(filter.toLowerCase()))) || (contact.Tags && contact.Tags.some((tagArray) => tagArray.some((tag) => tag.tagName && tag.tagName.toLowerCase().includes(filter.toLowerCase())))));
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -139,7 +130,7 @@ const AccountsData = () => {
                 </td>
                 <td>{contact.Name}</td>
                 <td>{contact.Email}</td>
-                <td>{contact.phoneNumber ? contact.phoneNumber.map((number, index) => <div key={index}>{number.value}</div>) : <span> </span>}</td>
+                <td>{contact.phoneNumber ? contact.phoneNumber.map((number, index) => <div key={index}>{number}</div>) : <span> </span>}</td>
                 <td>{contact.companyName}</td>
                 <td>
                   {/* {contact.Tags &&

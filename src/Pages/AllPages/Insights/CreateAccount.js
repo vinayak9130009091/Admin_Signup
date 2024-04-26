@@ -400,6 +400,8 @@ function CreateAccount({ handleAddAccount }) {
 
     newContacts[index].contactName = `${newContacts[index].firstName} ${newContacts[index].middleName} ${newContacts[index].lastName}`;
     setContacts(newContacts);
+
+    
   };
 
   const createAddAccouunt = () => {
@@ -504,6 +506,10 @@ function CreateAccount({ handleAddAccount }) {
 
     setCombinedValuesContact(selectedValues);
   };
+
+  //
+  
+
 
   console.log(clientType);
   const renderCurrentStage = () => {
@@ -751,7 +757,7 @@ function CreateAccount({ handleAddAccount }) {
                     </div>
                     <div className="company-zip">
                       <label className="label">ZIP/Postal Code</label>
-                      <input className="col-12 input" type="text" name="name" placeholder="" onChange={(e) => SetCZipPostalCode(e.target.value)} style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0" }} />
+                      <input className="col-12 input" type="text" name="name" placeholder="" onChange={(e) => SetCZipPostalCode(e.target.value)} style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0", }} />
                     </div>
 
                     <div className="company-btn">
@@ -899,10 +905,35 @@ function CreateAccount({ handleAddAccount }) {
                         <div className=" col-12" style={{ padding: "0 10px 0 10px" }}>
                           <h5>Address:</h5>
                         </div>
-                        <div className=" contacts-country col-12" style={{ padding: "0 10px 0 10px " }}>
+                        {/* <div className=" contacts-country col-12" style={{ padding: "0 10px 0 10px " }}>
                           <label htmlFor={`country${index}`}>Country:</label>
                           <input style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0" }} className="col-4 input" type="text" name="country" id={`country${index}`} value={contact.country} onChange={(e) => handleInputChange(index, e)} />
-                        </div>
+                        </div> */}
+
+<div>
+                      <label className="label">Country:</label>
+
+                      <Select
+                        type="text"
+                        id="country"
+                        value={cCountry}
+                        onChange={(e) => SetCCountry(e.target.value)}
+                        style={{
+                          width: "100%",
+                          boxSizing: "border-box",
+                          border: "1px solid #ddd",
+                          borderRadius: "5px",
+                          height: "40px",
+                        }}
+                      >
+                        <option value="">Select a country</option>
+                        {countries.map((country) => (
+                          <option key={country.name} value={country.name}>
+                            {country.name}
+                          </option>
+                        ))}
+                      </Select>
+                    </div>
                         <div className="contacts-street col-12" style={{ padding: "0 10px 0 10px " }}>
                           <label htmlFor={`streetAddress${index}`}>Street address:</label>
                           <input style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0" }} className="col-4 input" type="text" name="streetAddress" id={`streetAddress${index}`} value={contact.streetAddress} onChange={(e) => handleInputChange(index, e)} />
@@ -911,13 +942,18 @@ function CreateAccount({ handleAddAccount }) {
                           <label htmlFor={`city${index}`}>City:</label>
                           <input style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0" }} className="col-4 input" type="text" name="city" id={`city${index}`} value={contact.city} onChange={(e) => handleInputChange(index, e)} />
                         </div>
+
                         <div className="contacts-state col-4" style={{ padding: "0 10px 0 10px" }}>
                           <label htmlFor={`stateProvince${index}`}>State/Province:</label>
                           <input style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0" }} className="col-4 input" type="text" name="state" id={`state${index}`} value={contact.state} onChange={(e) => handleInputChange(index, e)} />
                         </div>
+
+                      
+
+
                         <div className="contacts-zip col-4" style={{ padding: "0 10px 0 10px" }}>
                           <label htmlFor={`zipPostalCode${index}`}>ZIP/Postal Code</label>
-                          <input style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0" }} className="col-4 input" type="number" name="postalCode" id={`postalCode${index}`} value={contact.postalCode} onChange={(e) => handleInputChange(index, e)} />
+                          <input style={{ padding: "8px 12px", width: "100%", border: "2px solid rgb(100, 149, 237)", borderRadius: "10px", margin: "10px 0", }} className="col-4 input" type="number" name="postalCode" id={`postalCode${index}`} value={contact.postalCode} onChange={(e) => handleInputChange(index, e)} />
                         </div>
                         <div className=" col-12">
                           <hr />
