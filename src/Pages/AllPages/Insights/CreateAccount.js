@@ -94,7 +94,8 @@ function CreateAccount({ handleAddAccount }) {
   const [isIndividualEnabled, setIsIndividualEnabled] = useState(true);
   const [isCompanyEnabled, setIsCompanyEnabled] = useState(false);
   const navigate = useNavigate();
-
+  const [combinedValuesContact, setCombinedValuesContact] = useState([]);
+  const [selectedTagsContact, setSelectedTagsContact] = useState([]);
   const handleContentCheckboxChange = () => {
     setIsIndividualEnabled(!isIndividualEnabled);
     // Reset the state of the other checkbox when this one is checked
@@ -142,7 +143,7 @@ function CreateAccount({ handleAddAccount }) {
   }, []);
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8080/common/tag/");
+      const response = await fetch("http://68.251.138.233:8080/common/tag/");
       const data = await response.json();
       setTags(data.tags);
     } catch (error) {
@@ -223,7 +224,7 @@ function CreateAccount({ handleAddAccount }) {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8080/common/user");
+      const response = await fetch("http://68.251.138.233:8080/common/user");
       const data = await response.json();
       setUserData(data);
     } catch (error) {
@@ -252,7 +253,7 @@ function CreateAccount({ handleAddAccount }) {
 
   const fetchFolderData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8080/common/folder");
+      const response = await fetch("http://68.251.138.233:8080/common/folder");
       const data = await response.json();
 
       setFolderData(data.folderTemplates);
@@ -305,7 +306,7 @@ function CreateAccount({ handleAddAccount }) {
         redirect: "follow",
       };
 
-      fetch("http://127.0.0.1:8080/admin/accountdetails/", requestOptions)
+      fetch("http://68.251.138.233:8080/admin/accountdetails/", requestOptions)
         .then((response) => response.text())
 
         .then((result) => {
@@ -340,7 +341,7 @@ function CreateAccount({ handleAddAccount }) {
         redirect: "follow",
       };
 
-      fetch("http://127.0.0.1:8080/admin/accountdetails/", requestOptions)
+      fetch("http://68.251.138.233:8080/admin/accountdetails/", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           console.log(result); // Log the result
@@ -383,7 +384,7 @@ function CreateAccount({ handleAddAccount }) {
       redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:8080/admin/accountdetails/", requestOptions)
+    fetch("http://68.251.138.233:8080/admin/accountdetails/", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
@@ -442,7 +443,7 @@ function CreateAccount({ handleAddAccount }) {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://127.0.0.1:8080/common/contact/",
+      url: "http://68.251.138.233:8080/common/contact/",
       headers: {
         "Content-Type": "application/json",
       },
@@ -486,6 +487,22 @@ function CreateAccount({ handleAddAccount }) {
   };
   const handleRefresh = () => {
     window.location.reload();
+  };
+
+  const handleTagChangeContact = (index, selectedOptions) => {
+    setSelectedTagsContact(selectedOptions);
+
+    // Map selected options to their values and send as an array
+    const selectedValues = selectedOptions.map((option) => option.value);
+    const newContacts = [...contacts];
+    // Update the tags property of the contact at the specified index
+    newContacts[index].tags = selectedOptions.map((option) => option.value); // Update to add tag values
+    setContacts(newContacts);
+
+    // Send selectedValues array to your backend
+    console.log("Selected Values:", selectedValues);
+
+    setCombinedValuesContact(selectedValues);
   };
 
   console.log(clientType);
@@ -559,9 +576,7 @@ function CreateAccount({ handleAddAccount }) {
                         styles={customStyles}
                       />
                     </div>
-                 
-                 
-               
+
                     <div className="select-container">
                       <div className="label-container">
                         <label>Team Member:</label>
@@ -658,14 +673,46 @@ function CreateAccount({ handleAddAccount }) {
                         styles={customStyles}
                       />
                     </div>
-                    <div>
+
+                    <div className="select-container">
+                      <div className="label-container">
+                        <label>Team Member:</label>
+                      </div>
+                      <Select
+                        options={useroptions}
+                        components={animatedComponents}
+                        isMulti // Enable multi-select
+                        value={selecteduser}
+                        onChange={handleuserChange}
+                        placeholder="Select Team..."
+                        isSearchable // Enable search
+                        isClearable //
+                      />
+                    </div>
+
+                    <div className="select-container">
+                      <div className="label-container">
+                        <label>Folder Template :</label>
+                      </div>
+                      <Select
+                        options={folderoptions}
+                        components={animatedComponents}
+                        isMulti={false} // Enable multi-select
+                        value={selectedFolder}
+                        onChange={handleFolderChange}
+                        placeholder="Select Folder..."
+                        isSearchable
+                        isClearable //
+                      />
+                    </div>
+                    {/* <div>
                       <label className="label">Team Member:</label>
                       <TeamMember addTeamMember={handleAddTeamMember} />
                     </div>
                     <div>
                       <label className="label">Folder Template :</label>
                       <AddFolderTemplate addFolderTemplate={handleAddFolderTemplate} />
-                    </div>
+                    </div> */}
                     <div style={{ marginTop: "10px" }}>
                       <h5>Company Adress</h5>
                     </div>
@@ -830,20 +877,19 @@ function CreateAccount({ handleAddAccount }) {
                             <label style={{ fontSize: "12px", color: "black" }}>Email Sync</label>
                           </div>
                         </div>
-
                         <div className=" col-12" style={{ padding: "0 10px 10px 10px" }}>
                           <label>Tags:</label>
                           <Select
                             options={options}
                             components={animatedComponents}
                             isMulti // Enable multi-select
-                            value={selectedTags}
-                            onChange={handleTagChange}
-                            placeholder="Select tags..."
+                            value={selectedTagsContact}
+                            onChange={(selectedOptions) => handleTagChangeContact(index, selectedOptions)}
+                            placeholder="Select tags contact..."
                             isSearchable // Enable search
                             styles={customStyles}
                           />
-                        </div>
+                        </div>{" "}
                         <div className=" col-12" style={{ padding: "0 10px 0 10px" }}>
                           <h5>Phone Number</h5>
                         </div>
@@ -947,7 +993,7 @@ function CreateAccount({ handleAddAccount }) {
                 />
               </div>
 
-              <label htmlFor="company_info_radio" style={{ marginLeft: "-23px", fontSize: "14px"}}>
+              <label htmlFor="company_info_radio" style={{ marginLeft: "-23px", fontSize: "14px" }}>
                 Contacts
               </label>
             </div>

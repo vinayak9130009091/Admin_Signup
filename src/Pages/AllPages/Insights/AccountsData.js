@@ -57,7 +57,7 @@ const AccountsData = () => {
       redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:8080/admin/account/accountdetailslist/", requestOptions)
+    fetch("http://68.251.138.233:8080/admin/account/accountdetailslist/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setAccounts(result.accountlist);
@@ -71,7 +71,7 @@ const AccountsData = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8080/common/tag");
+      const response = await fetch("http://68.251.138.233:8080/common/tag");
       const data = await response.json();
       setTags(data.tags);
     } catch (error) {

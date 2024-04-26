@@ -38,7 +38,6 @@ function Sidebar() {
   //Logout
 
   const { logindata, setLoginData } = useContext(LoginContext);
-  const [loginsData, setloginsData] = useState("");
 
   const history = useNavigate();
 
@@ -46,7 +45,7 @@ function Sidebar() {
     let token = localStorage.getItem("usersdatatoken");
     // console.log(token)
 
-    const res = await fetch("http://127.0.0.1:8080/common/login/logout", {
+    const res = await fetch("http://68.251.138.233:8080/common/login/logout", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -81,12 +80,13 @@ function Sidebar() {
   }, [theme]);
 
   const [data, setData] = useState(false);
+  const [loginsData, setloginsData] = useState("");
   const DashboardValid = async () => {
     let token = localStorage.getItem("usersdatatoken");
     // Cookies.set("userToken", res.result.token); // Set cookie with duration provided
     // console.log(token);
 
-    const res = await fetch("http://127.0.0.1:8080/common/login/verifytoken", {
+    const res = await fetch("http://68.251.138.233:8080/common/login/verifytoken", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -120,21 +120,20 @@ function Sidebar() {
   const [username, setUsername] = useState("");
 
   const fetchUserData = async () => {
-    try {
-      const response = await fetch("http://68.251.138.233:8080/common/user/" + loginsData);
-      if (!response.ok) {
-        throw new Error("Failed to fetch user data");
-      }
-      const data = await response.json();
-      userDatas(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    const myHeaders = new Headers();
 
-  const userDatas = (data) => {
-    setUserData(data.email);
-    setUsername(data.username);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    fetch("http://68.251.138.233:8080/common/user/" + loginsData, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("id", result);
+        setUserData(result.email);
+        setUsername(result.username);
+      });
   };
 
   useEffect(() => {
